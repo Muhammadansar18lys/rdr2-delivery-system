@@ -1,0 +1,21 @@
+
+name: Build C++ RDR2 Delivery System
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Install C++ compiler
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      - name: Compile C++ program
+        run: g++ -std=c++11 -Wall -o rdr2_delivery main.cpp
+
+      - name: Run program
+        run: ./rdr2_delivery
